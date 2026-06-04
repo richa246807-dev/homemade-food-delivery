@@ -80,11 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "GharKaKhana – Homemade Food, Delivered" },
       { name: "description", content: "Order healthy homemade food from neighborhood home chefs, tiffin services and restaurants." },
       { name: "author", content: "GharKaKhana" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "GharKaKhana – Homemade Food, Delivered" },
+      { property: "og:description", content: "Order healthy homemade food from neighborhood home chefs, tiffin services and restaurants." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "GharKaKhana – Homemade Food, Delivered" },
+      { name: "twitter:description", content: "Order healthy homemade food from neighborhood home chefs, tiffin services and restaurants." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a8fc77d5-ac2c-46d5-8acb-19395887c1e9/id-preview-3149c617--3a74b004-695c-47d7-b389-9e227212f462.lovable.app-1780557585162.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a8fc77d5-ac2c-46d5-8acb-19395887c1e9/id-preview-3149c617--3a74b004-695c-47d7-b389-9e227212f462.lovable.app-1780557585162.png" },
     ],
     links: [
       {
