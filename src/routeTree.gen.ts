@@ -11,9 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SplashRouteImport } from './routes/splash'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as RestaurantsRouteImport } from './routes/restaurants'
 import { Route as OtpRouteImport } from './routes/otp'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ChefsRouteImport } from './routes/chefs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChefIdRouteImport } from './routes/chef.$id'
+import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 
 const SplashRoute = SplashRouteImport.update({
   id: '/splash',
@@ -23,6 +28,16 @@ const SplashRoute = SplashRouteImport.update({
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RestaurantsRoute = RestaurantsRouteImport.update({
+  id: '/restaurants',
+  path: '/restaurants',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OtpRoute = OtpRouteImport.update({
@@ -35,48 +50,114 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChefsRoute = ChefsRouteImport.update({
+  id: '/chefs',
+  path: '/chefs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChefIdRoute = ChefIdRouteImport.update({
+  id: '/chef/$id',
+  path: '/chef/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chefs': typeof ChefsRoute
   '/login': typeof LoginRoute
   '/otp': typeof OtpRoute
+  '/restaurants': typeof RestaurantsRoute
+  '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
   '/splash': typeof SplashRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/chef/$id': typeof ChefIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chefs': typeof ChefsRoute
   '/login': typeof LoginRoute
   '/otp': typeof OtpRoute
+  '/restaurants': typeof RestaurantsRoute
+  '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
   '/splash': typeof SplashRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/chef/$id': typeof ChefIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chefs': typeof ChefsRoute
   '/login': typeof LoginRoute
   '/otp': typeof OtpRoute
+  '/restaurants': typeof RestaurantsRoute
+  '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
   '/splash': typeof SplashRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/chef/$id': typeof ChefIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/otp' | '/signup' | '/splash'
+  fullPaths:
+    | '/'
+    | '/chefs'
+    | '/login'
+    | '/otp'
+    | '/restaurants'
+    | '/search'
+    | '/signup'
+    | '/splash'
+    | '/category/$slug'
+    | '/chef/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/otp' | '/signup' | '/splash'
-  id: '__root__' | '/' | '/login' | '/otp' | '/signup' | '/splash'
+  to:
+    | '/'
+    | '/chefs'
+    | '/login'
+    | '/otp'
+    | '/restaurants'
+    | '/search'
+    | '/signup'
+    | '/splash'
+    | '/category/$slug'
+    | '/chef/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/chefs'
+    | '/login'
+    | '/otp'
+    | '/restaurants'
+    | '/search'
+    | '/signup'
+    | '/splash'
+    | '/category/$slug'
+    | '/chef/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChefsRoute: typeof ChefsRoute
   LoginRoute: typeof LoginRoute
   OtpRoute: typeof OtpRoute
+  RestaurantsRoute: typeof RestaurantsRoute
+  SearchRoute: typeof SearchRoute
   SignupRoute: typeof SignupRoute
   SplashRoute: typeof SplashRoute
+  CategorySlugRoute: typeof CategorySlugRoute
+  ChefIdRoute: typeof ChefIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -95,6 +176,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restaurants': {
+      id: '/restaurants'
+      path: '/restaurants'
+      fullPath: '/restaurants'
+      preLoaderRoute: typeof RestaurantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/otp': {
       id: '/otp'
       path: '/otp'
@@ -109,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chefs': {
+      id: '/chefs'
+      path: '/chefs'
+      fullPath: '/chefs'
+      preLoaderRoute: typeof ChefsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -116,15 +218,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chef/$id': {
+      id: '/chef/$id'
+      path: '/chef/$id'
+      fullPath: '/chef/$id'
+      preLoaderRoute: typeof ChefIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChefsRoute: ChefsRoute,
   LoginRoute: LoginRoute,
   OtpRoute: OtpRoute,
+  RestaurantsRoute: RestaurantsRoute,
+  SearchRoute: SearchRoute,
   SignupRoute: SignupRoute,
   SplashRoute: SplashRoute,
+  CategorySlugRoute: CategorySlugRoute,
+  ChefIdRoute: ChefIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
