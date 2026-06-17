@@ -1,12 +1,32 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PhoneShell } from "@/components/PhoneShell";
-import { chefs } from "@/lib/data";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import { TopBar } from "@/components/TopBar";
 import { Leaf, MapPin, Star } from "lucide-react";
 
 export const Route = createFileRoute("/chefs")({ component: ChefsList });
 
 function ChefsList() {
+  const [chefs, setChefs] = useState<any[]>([]);
+  useEffect(() => {
+    const fetchChefs = async () => {
+      const snapshot = await getDocs(
+        collection(db, "chefs")
+      );
+  
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+  
+      setChefs(data);
+    };
+  
+    fetchChefs();
+  }, []);
+
   return (
     <PhoneShell>
       <TopBar title="Home Chefs near you" back={false} />
@@ -22,8 +42,12 @@ function ChefsList() {
       </div>
 
       <div className="space-y-3 px-4 pt-3 pb-6">
-        {[...chefs, ...chefs].map((chef, i) => (
-          <Link key={i} to="/chef/$id" params={{ id: chef.id }} className="flex gap-3 rounded-2xl bg-card p-3 shadow-[var(--shadow-card)]">
+      {chefs.map((chef: any) => (
+          <Link
+          key={chef.id}
+          to="/chef/$id"
+          params={{ id: chef.uid }}
+        >
             <img src={chef.avatar} alt={chef.name} loading="lazy" className="h-20 w-20 flex-shrink-0 rounded-xl object-cover" />
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between">

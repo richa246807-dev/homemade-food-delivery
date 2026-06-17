@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TopBar } from "@/components/TopBar";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export const Route = createFileRoute("/chef-dashboard/earnings")({ component: Earnings });
+
 
 const days = [
   { d: "Mon", v: 60 },
@@ -14,15 +18,47 @@ const days = [
 ];
 
 function Earnings() {
+
+  const [totalEarnings, setTotalEarnings] = useState(0);
+const [totalOrders, setTotalOrders] = useState(0);
+
+useEffect(() => {
+  const fetchEarnings = async () => {
+    const snapshot = await getDocs(
+      collection(db, "orders")
+    );
+
+    let earnings = 0;
+
+    snapshot.docs.forEach((doc) => {
+      const order = doc.data();
+
+      if (order.status === "Delivered") {
+        earnings += order.totalAmount || 0;
+      }
+    });
+
+    setTotalEarnings(earnings);
+    setTotalOrders(snapshot.size);
+  };
+
+  fetchEarnings();
+}, []);
+
+
   return (
     <div className="phone-frame flex flex-col bg-background">
       <TopBar title="Earnings" />
       <div className="m-4 rounded-2xl p-5 text-white shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-primary)" }}>
         <div className="text-[11px] font-bold uppercase opacity-90">This week</div>
-        <div className="mt-1 text-4xl font-extrabold">₹18,420</div>
-        <div className="text-xs opacity-90">+22% vs last week · 124 orders</div>
+        <div className="mt-1 text-4xl font-extrabold">
+  ₹{totalEarnings}
+</div>
+<div className="text-xs opacity-90">
+  {totalOrders} Orders
+</div>
         <div className="mt-4 grid grid-cols-3 divide-x divide-white/30 text-center text-xs">
-          <div><b className="block text-base">₹3,240</b>Today</div>
+          <div><b className="block text-base">₹{totalEarnings}</b>Deliverd Earnings</div>
           <div><b className="block text-base">₹62K</b>This month</div>
           <div><b className="block text-base">₹4.2L</b>All time</div>
         </div>

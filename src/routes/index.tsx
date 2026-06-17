@@ -3,6 +3,10 @@ import { PhoneShell } from "@/components/PhoneShell";
 import { DishCard } from "@/components/DishCard";
 import { categories, chefs, dishes } from "@/lib/data";
 import { MapPin, Bell, Search, Coins, ChevronRight, Sparkles, Calendar, GraduationCap, Flame, Leaf } from "lucide-react";
+import { useRewards } from "@/lib/rewards";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,6 +19,27 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const [foodItems, setFoodItems] = useState<any[]>([]);
+
+useEffect(() => {
+  const fetchDishes = async () => {
+    const snapshot = await getDocs(
+      collection(db, "dishes")
+    );
+
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    setFoodItems(data);
+  };
+
+  fetchDishes();
+}, []);
+
+
+  const coins = useRewards((s) => s.coins);
   return (
     <PhoneShell>
       {/* Header */}
@@ -30,12 +55,12 @@ function Home() {
           </div>
           <div className="flex items-center gap-2">
             <Link to="/rewards" className="flex items-center gap-1 rounded-full bg-warning/20 px-2.5 py-1.5 text-xs font-bold text-[oklch(0.45_0.15_60)]">
-              <Coins className="h-3.5 w-3.5" /> 240
+              <Coins className="h-3.5 w-3.5" /> {coins}
             </Link>
-            <button className="relative flex h-9 w-9 items-center justify-center rounded-full bg-card border border-border">
+            <Link to="/notification" className="relative flex h-9 w-9 items-center justify-center rounded-full bg-card border border-border">
               <Bell className="h-4 w-4" />
               <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-destructive" />
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -44,6 +69,13 @@ function Home() {
           Search for "ghar ka khana", chefs…
         </Link>
       </div>
+
+      <div className="mx-4 mt-3 rounded-xl bg-yellow-100 p-3">
+  <h3 className="font-bold">💰 Earn GharCoins</h3>
+  <p className="text-sm">
+    Get 10 GharCoins on every order and redeem rewards.
+  </p>
+</div>
 
       {/* Hero banner */}
       <div className="px-4 pt-3">
@@ -70,6 +102,19 @@ function Home() {
           ))}
         </div>
       </section>
+     { /*🏡 Order From Your Neighbors
+Healthy homemade meals near you*/}
+<div className="px-4 pt-4">
+  <Link
+    to="/neighbor-food"
+    className="block rounded-2xl bg-green-50 border border-green-200 p-4"
+  >
+    <h3 className="font-bold">🏡 Order From Your Neighbors</h3>
+    <p className="text-sm text-muted-foreground">
+      Healthy homemade meals near you
+    </p>
+  </Link>
+</div>
 
       {/* Quick links */}
       <section className="px-4 pt-5">
@@ -86,7 +131,106 @@ function Home() {
           </Link>
         </div>
       </section>
+      <section className="px-4 pt-5">
+  <h3 className="text-sm font-bold mb-3">New Features</h3>
 
+  <div className="grid grid-cols-2 gap-3">
+
+    <Link
+      to="/neighbor-food"
+      className="rounded-2xl p-3 bg-card border border-border shadow-[var(--shadow-card)]"
+    >
+      <div className="text-2xl">🏠</div>
+      <div className="mt-2 font-bold text-sm">Neighbor Food</div>
+      <div className="text-[11px] text-muted-foreground">
+        Order from nearby homes
+      </div>
+    </Link>
+
+    <Link
+      to="/street-food"
+      className="rounded-2xl p-3 bg-card border border-border shadow-[var(--shadow-card)]"
+    >
+      <div className="text-2xl">🌮</div>
+      <div className="mt-2 font-bold text-sm">Street Food</div>
+      <div className="text-[11px] text-muted-foreground">
+        Local vendors near you
+      </div>
+    </Link>
+
+    <Link
+      to="/ai-health-report"
+      className="rounded-2xl p-3 bg-card border border-border shadow-[var(--shadow-card)]"
+    >
+      <div className="text-2xl">🤖</div>
+      <div className="mt-2 font-bold text-sm">AI Verified Food</div>
+      <div className="text-[11px] text-muted-foreground">
+        Health & hygiene scores
+      </div>
+    </Link>
+
+    <Link
+      to="/parent-plan"
+      className="rounded-2xl p-3 bg-card border border-border shadow-[var(--shadow-card)]"
+    >
+      <div className="text-2xl">👨‍👩‍👧</div>
+      <div className="mt-2 font-bold text-sm">Parent Plans</div>
+      <div className="text-[11px] text-muted-foreground">
+        Sponsor student meals
+      </div>
+    </Link>
+
+  </div>
+</section>
+  <h3 className="text-sm font-bold mb-3">New Features</h3>
+
+  <div className="grid grid-cols-2 gap-3">
+
+    <Link
+      to="/neighbor-food"
+      className="rounded-2xl p-3 bg-card border border-border"
+    >
+      <div className="text-2xl">🏠</div>
+      <div className="mt-2 font-bold text-sm">Neighbor Food</div>
+      <div className="text-[11px] text-muted-foreground">
+        Order from nearby homes
+      </div>
+    </Link>
+
+    <Link
+      to="/street-food"
+      className="rounded-2xl p-3 bg-card border border-border"
+    >
+      <div className="text-2xl">🌮</div>
+      <div className="mt-2 font-bold text-sm">Street Food</div>
+      <div className="text-[11px] text-muted-foreground">
+        Local food vendors
+      </div>
+    </Link>
+
+    <Link
+      to="/ai-health-report"
+      className="rounded-2xl p-3 bg-card border border-border"
+    >
+      <div className="text-2xl">🤖</div>
+      <div className="mt-2 font-bold text-sm">AI Verified Food</div>
+      <div className="text-[11px] text-muted-foreground">
+        Health & hygiene scores
+      </div>
+    </Link>
+
+    <Link
+      to="/parent-plan"
+      className="rounded-2xl p-3 bg-card border border-border"
+    >
+      <div className="text-2xl">👨‍👩‍👧</div>
+      <div className="mt-2 font-bold text-sm">Parent Plans</div>
+      <div className="text-[11px] text-muted-foreground">
+        Sponsor student meals
+      </div>
+    </Link>
+
+  </div>
       {/* Nearby Home Kitchens */}
       <section className="pt-6">
         <SectionHeader title="Nearby Home Kitchens" subtitle="Real homes, real cooks near you" link="/chefs" />
@@ -135,12 +279,14 @@ function Home() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3 px-4">
-          {dishes.slice(0, 4).map((d) => <DishCard key={d.id} dish={d} />)}
+        {foodItems.map((d) => (
+  <DishCard key={d.id} dish={d} />
+))}
         </div>
       </section>
 
       <section className="px-4 pb-6">
-        <Link to="/category/homemade" className="flex h-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/5 text-sm font-semibold text-primary">
+        <Link to="/category/$slug" params={{ slug: "homemade" }} className="flex h-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/5 text-sm font-semibold text-primary">
           See all homemade food
         </Link>
       </section>

@@ -1,21 +1,42 @@
 import { createFileRoute, useParams, Link, useNavigate } from "@tanstack/react-router";
-import { dishes } from "@/lib/data";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import { useCart } from "@/lib/cart";
 import { ArrowLeft, Heart, Star, Clock, Leaf, Plus, Minus } from "lucide-react";
 
 export const Route = createFileRoute("/food/$id")({ component: Food });
 
 function Food() {
+  const [dish, setDish] = useState<any>(null);
   const { id } = useParams({ from: "/food/$id" });
-  const dish = dishes.find((d) => d.id === id) ?? dishes[0];
+  useEffect(() => {
+    const fetchDish = async () => {
+      const docRef = doc(db, "dishes", id);
+  
+      const snapshot = await getDoc(docRef);
+  
+      if (snapshot.exists()) {
+        setDish({
+          id: snapshot.id,
+          ...snapshot.data(),
+        });
+      }
+    };
+  
+    fetchDish();
+  }, [id]);
+
   const nav = useNavigate();
   const { items, add, dec } = useCart();
   const item = items.find((i) => i.dish.id === dish.id);
-
+if (!dish) {
+  return <div>Loading...</div>;
+}
   return (
     <div className="phone-frame flex flex-col bg-background">
       <div className="relative h-72">
-        <img src={dish.img} alt={dish.name} className="h-full w-full object-cover" />
+        <img src={dish.imageUrl} alt={dish.name} className="h-full w-full object-cover" />
         <div className="absolute inset-x-0 top-0 flex items-center justify-between p-3">
           <Link to="/" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/95"><ArrowLeft className="h-5 w-5" /></Link>
           <button className="flex h-9 w-9 items-center justify-center rounded-full bg-white/95"><Heart className="h-4 w-4" /></button>
@@ -37,7 +58,7 @@ function Food() {
         <h1 className="mt-2 text-2xl font-bold">{dish.name}</h1>
 
         <Link to="/chef/$id" params={{ id: dish.chefId }} className="mt-2 inline-flex items-center gap-2 text-sm text-primary font-semibold">
-          by {dish.chef} →
+          by {dish.chefName} →
         </Link>
 
         <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">

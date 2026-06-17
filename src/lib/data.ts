@@ -62,3 +62,78 @@ export const categories = [
   { slug: "tiffin", name: "Tiffin", emoji: "🍱" },
   { slug: "festival", name: "Festival", emoji: "🪔" },
 ];
+export const neighborKitchens = [
+  {
+    id: "n1",
+    name: "Priya's Kitchen",
+    food: "Rajma Chawal",
+    price: 80,
+    rating: 4.8,
+    distance: "0.5 km",
+    verified: true,
+  },
+  {
+    id: "n2",
+    name: "Sharma Family Kitchen",
+    food: "Dal Roti",
+    price: 60,
+    rating: 4.7,
+    distance: "1 km",
+    verified: true,
+  },
+];
+export const streetVendors = [
+  {
+    id: "s1",
+    name: "Gupta Chaat",
+    item: "Aloo Tikki",
+    rating: 4.6,
+    hygiene: "Good",
+  },
+  {
+    id: "s2",
+    name: "Momo Point",
+    item: "Veg Momos",
+    rating: 4.8,
+    hygiene: "Excellent",
+  },
+];
+export const aiReports = [
+  {
+    id: "a1",
+    food: "Rajma Chawal",
+    healthScore: 92,
+    oilUsage: "Low",
+    hygiene: "Excellent",
+  },
+  {
+    id: "a2",
+    food: "Dal Roti",
+    healthScore: 95,
+    oilUsage: "Very Low",
+    hygiene: "Excellent",
+  },
+];
+export const rewards = {
+  coinsPerOrder: 10,
+  referralBonus: 50,
+};
+
+export const neighbors = [
+  {
+    id: "n1",
+    name: "Priya Sharma",
+    rating: 4.9,
+    distance: "500m",
+    healthScore: 92,
+    menu: "Rajma Chawal",
+  },
+  {
+    id: "n2",
+    name: "Sunita Aunty",
+    rating: 4.8,
+    distance: "1 km",
+    healthScore: 89,
+    menu: "Aloo Paratha",
+  },
+];

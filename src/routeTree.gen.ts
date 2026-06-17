@@ -12,31 +12,48 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrackingRouteImport } from './routes/tracking'
 import { Route as TiffinRouteImport } from './routes/tiffin'
 import { Route as StudentMealsRouteImport } from './routes/student-meals'
+import { Route as StreetFoodRouteImport } from './routes/street-food'
 import { Route as SplashRouteImport } from './routes/splash'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RoleRouteImport } from './routes/role'
 import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as RestaurantsRouteImport } from './routes/restaurants'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ParentPlanRouteImport } from './routes/parent-plan'
 import { Route as OtpRouteImport } from './routes/otp'
 import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as NotificationRouteImport } from './routes/notification'
+import { Route as NeighborFoodRouteImport } from './routes/neighbor-food'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as FestivalRouteImport } from './routes/festival'
+import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as ChefsRouteImport } from './routes/chefs'
+import { Route as ChefOrdersRouteImport } from './routes/chef-orders'
 import { Route as ChefDashboardRouteImport } from './routes/chef-dashboard'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as AiHealthReportRouteImport } from './routes/ai-health-report'
+import { Route as AdminUsersRouteImport } from './routes/admin-users'
+import { Route as AdminSettingsRouteImport } from './routes/admin-settings'
+import { Route as AdminRestaurantsRouteImport } from './routes/admin-restaurants'
+import { Route as AdminReportsRouteImport } from './routes/admin-reports'
+import { Route as AdminOrdersRouteImport } from './routes/admin-orders'
+import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
+import { Route as AdminCouponsRouteImport } from './routes/admin-coupons'
+import { Route as AdminChefsRouteImport } from './routes/admin-chefs'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AddItemRouteImport } from './routes/add-item'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FoodIdRouteImport } from './routes/food.$id'
+import { Route as EditDishIdRouteImport } from './routes/edit-dish.$id'
 import { Route as DeliveryNavigationRouteImport } from './routes/delivery.navigation'
 import { Route as ChefIdRouteImport } from './routes/chef.$id'
-import { Route as ChefDashboardOrdersRouteImport } from './routes/chef-dashboard.orders'
+import { Route as ChefDashboardReviewsRouteImport } from './routes/chef-dashboard.reviews'
 import { Route as ChefDashboardEarningsRouteImport } from './routes/chef-dashboard.earnings'
-import { Route as ChefDashboardAddRouteImport } from './routes/chef-dashboard.add'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 
 const TrackingRoute = TrackingRouteImport.update({
@@ -54,6 +71,11 @@ const StudentMealsRoute = StudentMealsRouteImport.update({
   path: '/student-meals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StreetFoodRoute = StreetFoodRouteImport.update({
+  id: '/street-food',
+  path: '/street-food',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SplashRoute = SplashRouteImport.update({
   id: '/splash',
   path: '/splash',
@@ -62,6 +84,11 @@ const SplashRoute = SplashRouteImport.update({
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -94,6 +121,11 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParentPlanRoute = ParentPlanRouteImport.update({
+  id: '/parent-plan',
+  path: '/parent-plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OtpRoute = OtpRouteImport.update({
   id: '/otp',
   path: '/otp',
@@ -102,6 +134,16 @@ const OtpRoute = OtpRouteImport.update({
 const OrdersRoute = OrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationRoute = NotificationRouteImport.update({
+  id: '/notification',
+  path: '/notification',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NeighborFoodRoute = NeighborFoodRouteImport.update({
+  id: '/neighbor-food',
+  path: '/neighbor-food',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -114,6 +156,11 @@ const FestivalRoute = FestivalRouteImport.update({
   path: '/festival',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeliveryRoute = DeliveryRouteImport.update({
   id: '/delivery',
   path: '/delivery',
@@ -122,6 +169,11 @@ const DeliveryRoute = DeliveryRouteImport.update({
 const ChefsRoute = ChefsRouteImport.update({
   id: '/chefs',
   path: '/chefs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChefOrdersRoute = ChefOrdersRouteImport.update({
+  id: '/chef-orders',
+  path: '/chef-orders',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChefDashboardRoute = ChefDashboardRouteImport.update({
@@ -139,9 +191,59 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiHealthReportRoute = AiHealthReportRouteImport.update({
+  id: '/ai-health-report',
+  path: '/ai-health-report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin-users',
+  path: '/admin-users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin-settings',
+  path: '/admin-settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRestaurantsRoute = AdminRestaurantsRouteImport.update({
+  id: '/admin-restaurants',
+  path: '/admin-restaurants',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/admin-reports',
+  path: '/admin-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/admin-orders',
+  path: '/admin-orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin-dashboard',
+  path: '/admin-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCouponsRoute = AdminCouponsRouteImport.update({
+  id: '/admin-coupons',
+  path: '/admin-coupons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminChefsRoute = AdminChefsRouteImport.update({
+  id: '/admin-chefs',
+  path: '/admin-chefs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AddItemRoute = AddItemRouteImport.update({
+  id: '/add-item',
+  path: '/add-item',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -154,6 +256,11 @@ const FoodIdRoute = FoodIdRouteImport.update({
   path: '/food/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EditDishIdRoute = EditDishIdRouteImport.update({
+  id: '/edit-dish/$id',
+  path: '/edit-dish/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeliveryNavigationRoute = DeliveryNavigationRouteImport.update({
   id: '/navigation',
   path: '/navigation',
@@ -164,19 +271,14 @@ const ChefIdRoute = ChefIdRouteImport.update({
   path: '/chef/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChefDashboardOrdersRoute = ChefDashboardOrdersRouteImport.update({
-  id: '/orders',
-  path: '/orders',
+const ChefDashboardReviewsRoute = ChefDashboardReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
   getParentRoute: () => ChefDashboardRoute,
 } as any)
 const ChefDashboardEarningsRoute = ChefDashboardEarningsRouteImport.update({
   id: '/earnings',
   path: '/earnings',
-  getParentRoute: () => ChefDashboardRoute,
-} as any)
-const ChefDashboardAddRoute = ChefDashboardAddRouteImport.update({
-  id: '/add',
-  path: '/add',
   getParentRoute: () => ChefDashboardRoute,
 } as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
@@ -187,219 +289,339 @@ const CategorySlugRoute = CategorySlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/add-item': typeof AddItemRoute
   '/admin': typeof AdminRoute
+  '/admin-chefs': typeof AdminChefsRoute
+  '/admin-coupons': typeof AdminCouponsRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
+  '/admin-orders': typeof AdminOrdersRoute
+  '/admin-reports': typeof AdminReportsRoute
+  '/admin-restaurants': typeof AdminRestaurantsRoute
+  '/admin-settings': typeof AdminSettingsRoute
+  '/admin-users': typeof AdminUsersRoute
+  '/ai-health-report': typeof AiHealthReportRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/chef-dashboard': typeof ChefDashboardRouteWithChildren
+  '/chef-orders': typeof ChefOrdersRoute
   '/chefs': typeof ChefsRoute
   '/delivery': typeof DeliveryRouteWithChildren
+  '/favorites': typeof FavoritesRoute
   '/festival': typeof FestivalRoute
   '/login': typeof LoginRoute
+  '/neighbor-food': typeof NeighborFoodRoute
+  '/notification': typeof NotificationRoute
   '/orders': typeof OrdersRoute
   '/otp': typeof OtpRoute
+  '/parent-plan': typeof ParentPlanRoute
   '/profile': typeof ProfileRoute
   '/restaurants': typeof RestaurantsRoute
   '/reviews': typeof ReviewsRoute
   '/rewards': typeof RewardsRoute
   '/role': typeof RoleRoute
   '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/splash': typeof SplashRoute
+  '/street-food': typeof StreetFoodRoute
   '/student-meals': typeof StudentMealsRoute
   '/tiffin': typeof TiffinRoute
   '/tracking': typeof TrackingRoute
   '/category/$slug': typeof CategorySlugRoute
-  '/chef-dashboard/add': typeof ChefDashboardAddRoute
   '/chef-dashboard/earnings': typeof ChefDashboardEarningsRoute
-  '/chef-dashboard/orders': typeof ChefDashboardOrdersRoute
+  '/chef-dashboard/reviews': typeof ChefDashboardReviewsRoute
   '/chef/$id': typeof ChefIdRoute
   '/delivery/navigation': typeof DeliveryNavigationRoute
+  '/edit-dish/$id': typeof EditDishIdRoute
   '/food/$id': typeof FoodIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/add-item': typeof AddItemRoute
   '/admin': typeof AdminRoute
+  '/admin-chefs': typeof AdminChefsRoute
+  '/admin-coupons': typeof AdminCouponsRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
+  '/admin-orders': typeof AdminOrdersRoute
+  '/admin-reports': typeof AdminReportsRoute
+  '/admin-restaurants': typeof AdminRestaurantsRoute
+  '/admin-settings': typeof AdminSettingsRoute
+  '/admin-users': typeof AdminUsersRoute
+  '/ai-health-report': typeof AiHealthReportRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/chef-dashboard': typeof ChefDashboardRouteWithChildren
+  '/chef-orders': typeof ChefOrdersRoute
   '/chefs': typeof ChefsRoute
   '/delivery': typeof DeliveryRouteWithChildren
+  '/favorites': typeof FavoritesRoute
   '/festival': typeof FestivalRoute
   '/login': typeof LoginRoute
+  '/neighbor-food': typeof NeighborFoodRoute
+  '/notification': typeof NotificationRoute
   '/orders': typeof OrdersRoute
   '/otp': typeof OtpRoute
+  '/parent-plan': typeof ParentPlanRoute
   '/profile': typeof ProfileRoute
   '/restaurants': typeof RestaurantsRoute
   '/reviews': typeof ReviewsRoute
   '/rewards': typeof RewardsRoute
   '/role': typeof RoleRoute
   '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/splash': typeof SplashRoute
+  '/street-food': typeof StreetFoodRoute
   '/student-meals': typeof StudentMealsRoute
   '/tiffin': typeof TiffinRoute
   '/tracking': typeof TrackingRoute
   '/category/$slug': typeof CategorySlugRoute
-  '/chef-dashboard/add': typeof ChefDashboardAddRoute
   '/chef-dashboard/earnings': typeof ChefDashboardEarningsRoute
-  '/chef-dashboard/orders': typeof ChefDashboardOrdersRoute
+  '/chef-dashboard/reviews': typeof ChefDashboardReviewsRoute
   '/chef/$id': typeof ChefIdRoute
   '/delivery/navigation': typeof DeliveryNavigationRoute
+  '/edit-dish/$id': typeof EditDishIdRoute
   '/food/$id': typeof FoodIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/add-item': typeof AddItemRoute
   '/admin': typeof AdminRoute
+  '/admin-chefs': typeof AdminChefsRoute
+  '/admin-coupons': typeof AdminCouponsRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
+  '/admin-orders': typeof AdminOrdersRoute
+  '/admin-reports': typeof AdminReportsRoute
+  '/admin-restaurants': typeof AdminRestaurantsRoute
+  '/admin-settings': typeof AdminSettingsRoute
+  '/admin-users': typeof AdminUsersRoute
+  '/ai-health-report': typeof AiHealthReportRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/chef-dashboard': typeof ChefDashboardRouteWithChildren
+  '/chef-orders': typeof ChefOrdersRoute
   '/chefs': typeof ChefsRoute
   '/delivery': typeof DeliveryRouteWithChildren
+  '/favorites': typeof FavoritesRoute
   '/festival': typeof FestivalRoute
   '/login': typeof LoginRoute
+  '/neighbor-food': typeof NeighborFoodRoute
+  '/notification': typeof NotificationRoute
   '/orders': typeof OrdersRoute
   '/otp': typeof OtpRoute
+  '/parent-plan': typeof ParentPlanRoute
   '/profile': typeof ProfileRoute
   '/restaurants': typeof RestaurantsRoute
   '/reviews': typeof ReviewsRoute
   '/rewards': typeof RewardsRoute
   '/role': typeof RoleRoute
   '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/splash': typeof SplashRoute
+  '/street-food': typeof StreetFoodRoute
   '/student-meals': typeof StudentMealsRoute
   '/tiffin': typeof TiffinRoute
   '/tracking': typeof TrackingRoute
   '/category/$slug': typeof CategorySlugRoute
-  '/chef-dashboard/add': typeof ChefDashboardAddRoute
   '/chef-dashboard/earnings': typeof ChefDashboardEarningsRoute
-  '/chef-dashboard/orders': typeof ChefDashboardOrdersRoute
+  '/chef-dashboard/reviews': typeof ChefDashboardReviewsRoute
   '/chef/$id': typeof ChefIdRoute
   '/delivery/navigation': typeof DeliveryNavigationRoute
+  '/edit-dish/$id': typeof EditDishIdRoute
   '/food/$id': typeof FoodIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/add-item'
     | '/admin'
+    | '/admin-chefs'
+    | '/admin-coupons'
+    | '/admin-dashboard'
+    | '/admin-orders'
+    | '/admin-reports'
+    | '/admin-restaurants'
+    | '/admin-settings'
+    | '/admin-users'
+    | '/ai-health-report'
     | '/cart'
     | '/checkout'
     | '/chef-dashboard'
+    | '/chef-orders'
     | '/chefs'
     | '/delivery'
+    | '/favorites'
     | '/festival'
     | '/login'
+    | '/neighbor-food'
+    | '/notification'
     | '/orders'
     | '/otp'
+    | '/parent-plan'
     | '/profile'
     | '/restaurants'
     | '/reviews'
     | '/rewards'
     | '/role'
     | '/search'
+    | '/settings'
     | '/signup'
     | '/splash'
+    | '/street-food'
     | '/student-meals'
     | '/tiffin'
     | '/tracking'
     | '/category/$slug'
-    | '/chef-dashboard/add'
     | '/chef-dashboard/earnings'
-    | '/chef-dashboard/orders'
+    | '/chef-dashboard/reviews'
     | '/chef/$id'
     | '/delivery/navigation'
+    | '/edit-dish/$id'
     | '/food/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/add-item'
     | '/admin'
+    | '/admin-chefs'
+    | '/admin-coupons'
+    | '/admin-dashboard'
+    | '/admin-orders'
+    | '/admin-reports'
+    | '/admin-restaurants'
+    | '/admin-settings'
+    | '/admin-users'
+    | '/ai-health-report'
     | '/cart'
     | '/checkout'
     | '/chef-dashboard'
+    | '/chef-orders'
     | '/chefs'
     | '/delivery'
+    | '/favorites'
     | '/festival'
     | '/login'
+    | '/neighbor-food'
+    | '/notification'
     | '/orders'
     | '/otp'
+    | '/parent-plan'
     | '/profile'
     | '/restaurants'
     | '/reviews'
     | '/rewards'
     | '/role'
     | '/search'
+    | '/settings'
     | '/signup'
     | '/splash'
+    | '/street-food'
     | '/student-meals'
     | '/tiffin'
     | '/tracking'
     | '/category/$slug'
-    | '/chef-dashboard/add'
     | '/chef-dashboard/earnings'
-    | '/chef-dashboard/orders'
+    | '/chef-dashboard/reviews'
     | '/chef/$id'
     | '/delivery/navigation'
+    | '/edit-dish/$id'
     | '/food/$id'
   id:
     | '__root__'
     | '/'
+    | '/add-item'
     | '/admin'
+    | '/admin-chefs'
+    | '/admin-coupons'
+    | '/admin-dashboard'
+    | '/admin-orders'
+    | '/admin-reports'
+    | '/admin-restaurants'
+    | '/admin-settings'
+    | '/admin-users'
+    | '/ai-health-report'
     | '/cart'
     | '/checkout'
     | '/chef-dashboard'
+    | '/chef-orders'
     | '/chefs'
     | '/delivery'
+    | '/favorites'
     | '/festival'
     | '/login'
+    | '/neighbor-food'
+    | '/notification'
     | '/orders'
     | '/otp'
+    | '/parent-plan'
     | '/profile'
     | '/restaurants'
     | '/reviews'
     | '/rewards'
     | '/role'
     | '/search'
+    | '/settings'
     | '/signup'
     | '/splash'
+    | '/street-food'
     | '/student-meals'
     | '/tiffin'
     | '/tracking'
     | '/category/$slug'
-    | '/chef-dashboard/add'
     | '/chef-dashboard/earnings'
-    | '/chef-dashboard/orders'
+    | '/chef-dashboard/reviews'
     | '/chef/$id'
     | '/delivery/navigation'
+    | '/edit-dish/$id'
     | '/food/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AddItemRoute: typeof AddItemRoute
   AdminRoute: typeof AdminRoute
+  AdminChefsRoute: typeof AdminChefsRoute
+  AdminCouponsRoute: typeof AdminCouponsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminRestaurantsRoute: typeof AdminRestaurantsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AiHealthReportRoute: typeof AiHealthReportRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   ChefDashboardRoute: typeof ChefDashboardRouteWithChildren
+  ChefOrdersRoute: typeof ChefOrdersRoute
   ChefsRoute: typeof ChefsRoute
   DeliveryRoute: typeof DeliveryRouteWithChildren
+  FavoritesRoute: typeof FavoritesRoute
   FestivalRoute: typeof FestivalRoute
   LoginRoute: typeof LoginRoute
+  NeighborFoodRoute: typeof NeighborFoodRoute
+  NotificationRoute: typeof NotificationRoute
   OrdersRoute: typeof OrdersRoute
   OtpRoute: typeof OtpRoute
+  ParentPlanRoute: typeof ParentPlanRoute
   ProfileRoute: typeof ProfileRoute
   RestaurantsRoute: typeof RestaurantsRoute
   ReviewsRoute: typeof ReviewsRoute
   RewardsRoute: typeof RewardsRoute
   RoleRoute: typeof RoleRoute
   SearchRoute: typeof SearchRoute
+  SettingsRoute: typeof SettingsRoute
   SignupRoute: typeof SignupRoute
   SplashRoute: typeof SplashRoute
+  StreetFoodRoute: typeof StreetFoodRoute
   StudentMealsRoute: typeof StudentMealsRoute
   TiffinRoute: typeof TiffinRoute
   TrackingRoute: typeof TrackingRoute
   CategorySlugRoute: typeof CategorySlugRoute
   ChefIdRoute: typeof ChefIdRoute
+  EditDishIdRoute: typeof EditDishIdRoute
   FoodIdRoute: typeof FoodIdRoute
 }
 
@@ -426,6 +648,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentMealsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/street-food': {
+      id: '/street-food'
+      path: '/street-food'
+      fullPath: '/street-food'
+      preLoaderRoute: typeof StreetFoodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/splash': {
       id: '/splash'
       path: '/splash'
@@ -438,6 +667,13 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/search': {
@@ -482,6 +718,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parent-plan': {
+      id: '/parent-plan'
+      path: '/parent-plan'
+      fullPath: '/parent-plan'
+      preLoaderRoute: typeof ParentPlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/otp': {
       id: '/otp'
       path: '/otp'
@@ -494,6 +737,20 @@ declare module '@tanstack/react-router' {
       path: '/orders'
       fullPath: '/orders'
       preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notification': {
+      id: '/notification'
+      path: '/notification'
+      fullPath: '/notification'
+      preLoaderRoute: typeof NotificationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/neighbor-food': {
+      id: '/neighbor-food'
+      path: '/neighbor-food'
+      fullPath: '/neighbor-food'
+      preLoaderRoute: typeof NeighborFoodRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -510,6 +767,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FestivalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/delivery': {
       id: '/delivery'
       path: '/delivery'
@@ -522,6 +786,13 @@ declare module '@tanstack/react-router' {
       path: '/chefs'
       fullPath: '/chefs'
       preLoaderRoute: typeof ChefsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chef-orders': {
+      id: '/chef-orders'
+      path: '/chef-orders'
+      fullPath: '/chef-orders'
+      preLoaderRoute: typeof ChefOrdersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chef-dashboard': {
@@ -545,11 +816,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-health-report': {
+      id: '/ai-health-report'
+      path: '/ai-health-report'
+      fullPath: '/ai-health-report'
+      preLoaderRoute: typeof AiHealthReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-users': {
+      id: '/admin-users'
+      path: '/admin-users'
+      fullPath: '/admin-users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-settings': {
+      id: '/admin-settings'
+      path: '/admin-settings'
+      fullPath: '/admin-settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-restaurants': {
+      id: '/admin-restaurants'
+      path: '/admin-restaurants'
+      fullPath: '/admin-restaurants'
+      preLoaderRoute: typeof AdminRestaurantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-reports': {
+      id: '/admin-reports'
+      path: '/admin-reports'
+      fullPath: '/admin-reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-orders': {
+      id: '/admin-orders'
+      path: '/admin-orders'
+      fullPath: '/admin-orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-dashboard': {
+      id: '/admin-dashboard'
+      path: '/admin-dashboard'
+      fullPath: '/admin-dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-coupons': {
+      id: '/admin-coupons'
+      path: '/admin-coupons'
+      fullPath: '/admin-coupons'
+      preLoaderRoute: typeof AdminCouponsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-chefs': {
+      id: '/admin-chefs'
+      path: '/admin-chefs'
+      fullPath: '/admin-chefs'
+      preLoaderRoute: typeof AdminChefsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/add-item': {
+      id: '/add-item'
+      path: '/add-item'
+      fullPath: '/add-item'
+      preLoaderRoute: typeof AddItemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -566,6 +907,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FoodIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/edit-dish/$id': {
+      id: '/edit-dish/$id'
+      path: '/edit-dish/$id'
+      fullPath: '/edit-dish/$id'
+      preLoaderRoute: typeof EditDishIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/delivery/navigation': {
       id: '/delivery/navigation'
       path: '/navigation'
@@ -580,11 +928,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChefIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chef-dashboard/orders': {
-      id: '/chef-dashboard/orders'
-      path: '/orders'
-      fullPath: '/chef-dashboard/orders'
-      preLoaderRoute: typeof ChefDashboardOrdersRouteImport
+    '/chef-dashboard/reviews': {
+      id: '/chef-dashboard/reviews'
+      path: '/reviews'
+      fullPath: '/chef-dashboard/reviews'
+      preLoaderRoute: typeof ChefDashboardReviewsRouteImport
       parentRoute: typeof ChefDashboardRoute
     }
     '/chef-dashboard/earnings': {
@@ -592,13 +940,6 @@ declare module '@tanstack/react-router' {
       path: '/earnings'
       fullPath: '/chef-dashboard/earnings'
       preLoaderRoute: typeof ChefDashboardEarningsRouteImport
-      parentRoute: typeof ChefDashboardRoute
-    }
-    '/chef-dashboard/add': {
-      id: '/chef-dashboard/add'
-      path: '/add'
-      fullPath: '/chef-dashboard/add'
-      preLoaderRoute: typeof ChefDashboardAddRouteImport
       parentRoute: typeof ChefDashboardRoute
     }
     '/category/$slug': {
@@ -612,15 +953,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface ChefDashboardRouteChildren {
-  ChefDashboardAddRoute: typeof ChefDashboardAddRoute
   ChefDashboardEarningsRoute: typeof ChefDashboardEarningsRoute
-  ChefDashboardOrdersRoute: typeof ChefDashboardOrdersRoute
+  ChefDashboardReviewsRoute: typeof ChefDashboardReviewsRoute
 }
 
 const ChefDashboardRouteChildren: ChefDashboardRouteChildren = {
-  ChefDashboardAddRoute: ChefDashboardAddRoute,
   ChefDashboardEarningsRoute: ChefDashboardEarningsRoute,
-  ChefDashboardOrdersRoute: ChefDashboardOrdersRoute,
+  ChefDashboardReviewsRoute: ChefDashboardReviewsRoute,
 }
 
 const ChefDashboardRouteWithChildren = ChefDashboardRoute._addFileChildren(
@@ -641,31 +980,59 @@ const DeliveryRouteWithChildren = DeliveryRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AddItemRoute: AddItemRoute,
   AdminRoute: AdminRoute,
+  AdminChefsRoute: AdminChefsRoute,
+  AdminCouponsRoute: AdminCouponsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminRestaurantsRoute: AdminRestaurantsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AiHealthReportRoute: AiHealthReportRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   ChefDashboardRoute: ChefDashboardRouteWithChildren,
+  ChefOrdersRoute: ChefOrdersRoute,
   ChefsRoute: ChefsRoute,
   DeliveryRoute: DeliveryRouteWithChildren,
+  FavoritesRoute: FavoritesRoute,
   FestivalRoute: FestivalRoute,
   LoginRoute: LoginRoute,
+  NeighborFoodRoute: NeighborFoodRoute,
+  NotificationRoute: NotificationRoute,
   OrdersRoute: OrdersRoute,
   OtpRoute: OtpRoute,
+  ParentPlanRoute: ParentPlanRoute,
   ProfileRoute: ProfileRoute,
   RestaurantsRoute: RestaurantsRoute,
   ReviewsRoute: ReviewsRoute,
   RewardsRoute: RewardsRoute,
   RoleRoute: RoleRoute,
   SearchRoute: SearchRoute,
+  SettingsRoute: SettingsRoute,
   SignupRoute: SignupRoute,
   SplashRoute: SplashRoute,
+  StreetFoodRoute: StreetFoodRoute,
   StudentMealsRoute: StudentMealsRoute,
   TiffinRoute: TiffinRoute,
   TrackingRoute: TrackingRoute,
   CategorySlugRoute: CategorySlugRoute,
   ChefIdRoute: ChefIdRoute,
+  EditDishIdRoute: EditDishIdRoute,
   FoodIdRoute: FoodIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

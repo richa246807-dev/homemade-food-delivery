@@ -50,6 +50,24 @@ function SearchPage() {
           ))}
         </div>
       </section>
+      <div className="mt-4 rounded-2xl bg-green-50 border border-green-200 p-3">
+  🏠 Search Nearby Home Kitchens
+  <p className="text-xs text-muted-foreground">
+    Find homemade food from your neighbors
+  </p>
+</div>
+<div className="mt-3 rounded-2xl bg-yellow-50 border border-yellow-200 p-3">
+  🌮 Search Street Food Vendors
+  <p className="text-xs text-muted-foreground">
+    Explore local carts and stalls near you
+  </p>
+</div>
+<div className="mt-3 rounded-2xl bg-blue-50 border border-blue-200 p-3">
+  🛡️ AI Healthy Meals
+  <p className="text-xs text-muted-foreground">
+    Show only meals with AI Health Score above 90
+  </p>
+</div>
 
       <section className="px-4 pt-6 pb-6">
         <h3 className="mb-3 text-sm font-bold">Suggestions</h3>

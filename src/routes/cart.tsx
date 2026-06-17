@@ -48,6 +48,9 @@ function Cart() {
               <div className="flex-1 min-w-0">
                 <h3 className="text-sm font-semibold leading-tight">{dish.name}</h3>
                 <p className="text-[11px] text-muted-foreground">{dish.chef}</p>
+                <p className="text-green-600 text-xs font-semibold">
+  🛡️ AI Verified
+</p>
                 <div className="mt-1 font-bold text-sm">₹{dish.price * qty}</div>
               </div>
               <div className="flex items-center gap-2 self-center rounded-lg border-2 border-success/30 bg-success/5 px-2 py-1">
@@ -70,15 +73,33 @@ function Cart() {
           <span className="flex-1 font-medium">Apply coupon</span>
           <span className="text-xs text-primary font-semibold">2 available</span>
         </Link>
-
+        <div className="mx-4 mt-4 rounded-2xl bg-purple-50 p-4">
+  <h3 className="font-bold">👨‍👩‍👧 Parent Sponsored Meal</h3>
+  <p className="text-sm">
+    Parents can directly sponsor healthy meals for students.
+  </p>
+</div>
+        <div className="mx-4 mt-4 rounded-2xl bg-blue-50 p-4">
+  <h3 className="font-bold">🎓 Student Offer</h3>
+  <p className="text-sm">
+    Get 20% off on monthly meal subscriptions.
+  </p>
+</div>
         <div className="mx-4 mt-4 rounded-2xl bg-card p-4 shadow-[var(--shadow-soft)]">
           <h3 className="text-sm font-bold mb-3">Bill Details</h3>
+          <div className="mx-4 mt-3 rounded-xl bg-green-100 p-3">
+  
           {[["Item Total", `₹${sub}`], ["Delivery Fee", `₹${delivery}`], ["Taxes & Charges", `₹${gst}`]].map(([k, v]) => (
             <div key={k} className="flex justify-between py-1 text-sm text-muted-foreground"><span>{k}</span><span>{v}</span></div>
           ))}
           <div className="mt-2 flex justify-between border-t border-border pt-2 text-base font-bold"><span>To Pay</span><span>₹{grand}</span></div>
         </div>
-
+      </div>
+        <div className="mx-4 mt-3 rounded-xl bg-green-100 p-3">
+  <p className="text-sm font-semibold">
+    🎉 You'll earn 10 GharCoins on this order
+  </p>
+</div>
         <div className="mx-4 mt-4 rounded-2xl bg-card p-4 shadow-[var(--shadow-soft)]">
           <h3 className="text-sm font-bold">Delivery in 25 mins</h3>
           <p className="mt-1 text-xs text-muted-foreground">Flat 12, Pearl Apartments, Koramangala 4th Block, Bangalore 560034</p>

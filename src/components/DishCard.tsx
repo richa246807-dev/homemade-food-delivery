@@ -1,8 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Star, Clock, MapPin, Leaf } from "lucide-react";
 import type { Dish } from "@/lib/data";
+import { Heart } from "lucide-react";
+import { useFavorites } from "@/lib/favorites";
 
 export function DishCard({ dish }: { dish: Dish }) {
+  const { toggleFavorite, isFavorite } = useFavorites();
   return (
     <Link
       to="/food/$id"
@@ -11,6 +14,21 @@ export function DishCard({ dish }: { dish: Dish }) {
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <img src={dish.img} alt={dish.name} loading="lazy" className="h-full w-full object-cover" />
+        <button
+  onClick={(e) => {
+    e.preventDefault();
+    toggleFavorite(dish.id);
+  }}
+  className="absolute right-2 top-2 rounded-full bg-white p-1.5 shadow"
+>
+  <Heart
+    className={`h-4 w-4 ${
+      isFavorite(dish.id)
+        ? "fill-red-500 text-red-500"
+        : "text-gray-500"
+    }`}
+  />
+</button>
         <div className="absolute left-2 top-2 flex gap-1.5">
           <span className={`flex h-5 w-5 items-center justify-center rounded border-2 bg-white ${dish.veg ? "border-success" : "border-destructive"}`}>
             <span className={`h-2 w-2 rounded-full ${dish.veg ? "bg-success" : "bg-destructive"}`} />
@@ -22,6 +40,11 @@ export function DishCard({ dish }: { dish: Dish }) {
           )}
         </div>
       </div>
+      {dish.healthy && (
+  <span className="flex items-center gap-1 rounded-full bg-blue-500 px-2 py-0.5 text-[10px] font-semibold text-white">
+    🛡️ AI Verified
+  </span>
+)}
       <div className="p-3">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-semibold text-sm leading-tight">{dish.name}</h3>

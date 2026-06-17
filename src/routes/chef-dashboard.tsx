@@ -1,12 +1,114 @@
+import { Outlet } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TopBar } from "@/components/TopBar";
-import { dishes } from "@/lib/data";
 import chef from "@/assets/chef-priya.jpg";
 import { TrendingUp, Package, Wallet, Plus, Calendar, Star } from "lucide-react";
+import { deleteDoc, doc } from "firebase/firestore";
+import { auth } from "@/lib/firebase";
+import { query, where } from "firebase/firestore";
+import { getDoc } from "firebase/firestore";
+import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/chef-dashboard")({ component: ChefDash });
 
 function ChefDash() {
+  const navigate = useNavigate();
+  const [avgRating, setAvgRating] = useState("0");
+  const [reviewCount, setReviewCount] = useState(0);
+  const handleDelete = async (dishId: string) => {
+    try {
+      await deleteDoc(doc(db, "dishes", dishId));
+  
+      alert("Dish deleted successfully");
+  
+      setMenuItems((prev) =>
+        prev.filter((dish) => dish.id !== dishId)
+      );
+    } catch (error) {
+      console.error(error);
+      alert("Failed to delete dish");
+    }
+  };
+
+
+  const [menuItems, setMenuItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    const checkChef = async () => {
+      const user = auth.currentUser;
+  
+      if (!user) return;
+  
+      const snap = await getDoc(
+        doc(db, "chefs", user.uid)
+      );
+  
+      const data = snap.data();
+
+      if (data?.isActive === false) {
+        alert("Chef Account Disabled");
+        navigate({ to: "/" });
+        return;
+      }
+  
+      if (data?.status !== "approved") {
+        alert("Waiting for Admin Approval");
+        navigate({ to: "/" });
+      }
+    };
+  
+    checkChef();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchDishes = async () => {
+const q = query(
+      //const snapshot = await getDocs(
+        collection(db, "dishes"),
+        where("chefId", "==", auth.currentUser?.uid)
+      );
+  const snapshot = await getDocs(q);
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+  
+      setMenuItems(data);
+    };
+  
+    fetchDishes();
+  }, []);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const snapshot = await getDocs(
+        collection(db, "reviews")
+      );
+  
+      const reviews = snapshot.docs.map((doc) =>
+        doc.data()
+      );
+  
+      if (reviews.length > 0) {
+        const avg =
+          reviews.reduce(
+            (sum: number, r: any) =>
+              sum + r.rating,
+            0
+          ) / reviews.length;
+  
+        setAvgRating(avg.toFixed(1));
+        setReviewCount(reviews.length);
+      }
+    };
+  
+    fetchReviews();
+  }, []);
+
   return (
     <div className="phone-frame flex flex-col bg-background">
       <TopBar title="Chef Dashboard" back={false} />
@@ -33,7 +135,15 @@ function ChefDash() {
           </div>
           <div className="mt-3 grid grid-cols-3 divide-x divide-white/30 text-center text-xs">
             <div><b className="block text-base">18</b>Orders</div>
-            <div><b className="block text-base">4.8★</b>Rating</div>
+            <div>
+  <b className="block text-base">
+    {avgRating}★
+  </b>
+  Rating
+</div>
+<div className="text-xs">
+  {reviewCount} Reviews
+</div>
             <div><b className="block text-base">2</b>Pending</div>
           </div>
         </div>
@@ -41,10 +151,11 @@ function ChefDash() {
 
       <div className="px-4 pt-4 grid grid-cols-4 gap-2">
         {[
-          { i: Plus, t: "Add Item", to: "/chef-dashboard/add" },
-          { i: Package, t: "Orders", to: "/chef-dashboard/orders" },
+          { i: Plus, t: "Add Item", to: "/add-item" },
+          { i: Package, t: "Orders", to: "/chef-orders" },
           { i: Wallet, t: "Earnings", to: "/chef-dashboard/earnings" },
           { i: Calendar, t: "Menu", to: "/chef-dashboard/add" },
+          { i: Star, t: "Reviews", to: "/chef-dashboard/reviews" },
         ].map((q) => {
           const Icon = q.i;
           return (
@@ -59,7 +170,7 @@ function ChefDash() {
       <section className="px-4 pt-5">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-bold">Live Orders (2)</h3>
-          <Link to="/chef-dashboard/orders" className="text-xs font-semibold text-primary">View all</Link>
+          <Link to="/chef-dashboard" className="text-xs font-semibold text-primary">View all</Link>
         </div>
         <div className="space-y-2">
           {[
@@ -87,20 +198,51 @@ function ChefDash() {
       <section className="px-4 pt-5 pb-6">
         <h3 className="text-sm font-bold mb-2">Today's Menu (6 items)</h3>
         <div className="space-y-2">
-          {dishes.slice(0, 3).map((d) => (
+        {menuItems.map((d) => (
+          
             <div key={d.id} className="flex items-center gap-3 rounded-xl bg-card border border-border p-2">
-              <img src={d.img} alt="" className="h-12 w-12 rounded-lg object-cover" />
+              <div className="h-12 w-12 rounded-lg overflow-hidden">
+  <img
+    src={d.imageUrl}
+    alt={d.name}
+    className="h-full w-full object-cover"
+  />
+</div>
               <div className="flex-1">
                 <div className="text-sm font-semibold">{d.name}</div>
+                <div className="text-xs text-red-500">
+  {d.id}
+</div>
                 <div className="text-[11px] text-muted-foreground flex items-center gap-2">₹{d.price} · <Star className="h-3 w-3 fill-success text-success" />{d.rating}</div>
               </div>
+            
+              <Link
+  to="/edit-dish/$id"
+  params={{ id: d.id }}
+  className="px-3 py-1 rounded bg-blue-500 text-white text-xs"
+>
+  Edit
+</Link>
+
+
+  <button
+  onClick={() => handleDelete(d.id)}
+  className="px-3 py-1 rounded bg-red-500 text-white text-xs"
+>
+  Delete
+</button>
+
+
               <label className="relative inline-flex h-5 w-9 items-center rounded-full bg-success cursor-pointer">
                 <span className="absolute right-0.5 h-4 w-4 rounded-full bg-white" />
               </label>
             </div>
           ))}
+
+
         </div>
       </section>
+      <Outlet />
     </div>
   );
 }

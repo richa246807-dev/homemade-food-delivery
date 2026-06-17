@@ -3,12 +3,40 @@ import { TopBar } from "@/components/TopBar";
 import { Star, Camera } from "lucide-react";
 import { useState } from "react";
 import { dishes } from "@/lib/data";
+import { auth, db } from "@/lib/firebase";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+} from "firebase/firestore";
 
 export const Route = createFileRoute("/reviews")({ component: Reviews });
 
 function Reviews() {
   const [stars, setStars] = useState(5);
+  const [review, setReview] = useState("");
   const dish = dishes[2];
+
+  const submitReview = async () => {
+    try {
+      await addDoc(
+        collection(db, "reviews"),
+        {
+          userId: auth.currentUser?.uid,
+          rating: stars,
+          review,
+          createdAt: serverTimestamp(),
+        }
+      );
+  
+      alert("Review Submitted Successfully");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to submit review");
+    }
+  };
+
+
   return (
     <div className="phone-frame flex flex-col bg-background">
       <TopBar title="Rate your order" />
@@ -41,12 +69,33 @@ function Reviews() {
             ))}
           </div>
         </div>
+        <div className="mt-4 rounded-xl bg-green-50 border border-green-200 p-3">
+  <h3 className="font-semibold">🛡️ AI Verified Meal</h3>
+  <p className="text-xs">Health Score: 92/100</p>
+  <p className="text-xs">Oil Usage: Low</p>
+  <p className="text-xs">Protein: High</p>
+</div>
 
-        <textarea placeholder="Write a review for the chef…" className="mt-4 w-full h-24 rounded-xl border border-border bg-card p-3 text-sm outline-none focus:border-primary resize-none" />
+<textarea
+  value={review}
+  onChange={(e) => setReview(e.target.value)}
+  placeholder="Write a review for the chef…"
+  className="mt-4 w-full h-24 rounded-xl border border-border bg-card p-3 text-sm outline-none focus:border-primary resize-none"
+/>
+
+      
 
         <button className="mt-2 flex items-center gap-2 text-xs font-semibold text-primary"><Camera className="h-4 w-4" /> Add a photo</button>
+        <div className="mt-4 rounded-xl bg-warning/10 border border-warning/30 p-3 text-center">
+  💰 Earn 5 GharCoins for submitting a review
+</div>
 
-        <button className="mt-6 h-12 w-full rounded-xl bg-primary font-semibold text-primary-foreground shadow-[var(--shadow-glow)]">Submit Review</button>
+<button 
+  onClick={submitReview}
+  className="mt-6 h-12 w-full rounded-xl bg-primary font-semibold text-primary-foreground shadow-[var(--shadow-glow)]">
+  Submit Review
+</button>
+        
       </div>
     </div>
   );
