@@ -203,6 +203,7 @@ completedOrders.forEach((order) => {
 
     <Link
       to="/delivery-navigation"
+      
       className="mt-2 block w-full rounded-xl bg-blue-600 text-white p-2 text-center"
     >
       Navigate
