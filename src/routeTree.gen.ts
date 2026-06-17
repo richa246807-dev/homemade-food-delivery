@@ -30,6 +30,8 @@ import { Route as NeighborFoodRouteImport } from './routes/neighbor-food'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as FestivalRouteImport } from './routes/festival'
 import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as DeliveryNavigationRouteImport } from './routes/delivery-navigation'
+import { Route as DeliveryHistoryRouteImport } from './routes/delivery-history'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as ChefsRouteImport } from './routes/chefs'
 import { Route as ChefOrdersRouteImport } from './routes/chef-orders'
@@ -50,7 +52,6 @@ import { Route as AddItemRouteImport } from './routes/add-item'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FoodIdRouteImport } from './routes/food.$id'
 import { Route as EditDishIdRouteImport } from './routes/edit-dish.$id'
-import { Route as DeliveryNavigationRouteImport } from './routes/delivery.navigation'
 import { Route as ChefIdRouteImport } from './routes/chef.$id'
 import { Route as ChefDashboardReviewsRouteImport } from './routes/chef-dashboard.reviews'
 import { Route as ChefDashboardEarningsRouteImport } from './routes/chef-dashboard.earnings'
@@ -161,6 +162,16 @@ const FavoritesRoute = FavoritesRouteImport.update({
   path: '/favorites',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeliveryNavigationRoute = DeliveryNavigationRouteImport.update({
+  id: '/delivery-navigation',
+  path: '/delivery-navigation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveryHistoryRoute = DeliveryHistoryRouteImport.update({
+  id: '/delivery-history',
+  path: '/delivery-history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeliveryRoute = DeliveryRouteImport.update({
   id: '/delivery',
   path: '/delivery',
@@ -261,11 +272,6 @@ const EditDishIdRoute = EditDishIdRouteImport.update({
   path: '/edit-dish/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DeliveryNavigationRoute = DeliveryNavigationRouteImport.update({
-  id: '/navigation',
-  path: '/navigation',
-  getParentRoute: () => DeliveryRoute,
-} as any)
 const ChefIdRoute = ChefIdRouteImport.update({
   id: '/chef/$id',
   path: '/chef/$id',
@@ -305,7 +311,9 @@ export interface FileRoutesByFullPath {
   '/chef-dashboard': typeof ChefDashboardRouteWithChildren
   '/chef-orders': typeof ChefOrdersRoute
   '/chefs': typeof ChefsRoute
-  '/delivery': typeof DeliveryRouteWithChildren
+  '/delivery': typeof DeliveryRoute
+  '/delivery-history': typeof DeliveryHistoryRoute
+  '/delivery-navigation': typeof DeliveryNavigationRoute
   '/favorites': typeof FavoritesRoute
   '/festival': typeof FestivalRoute
   '/login': typeof LoginRoute
@@ -331,7 +339,6 @@ export interface FileRoutesByFullPath {
   '/chef-dashboard/earnings': typeof ChefDashboardEarningsRoute
   '/chef-dashboard/reviews': typeof ChefDashboardReviewsRoute
   '/chef/$id': typeof ChefIdRoute
-  '/delivery/navigation': typeof DeliveryNavigationRoute
   '/edit-dish/$id': typeof EditDishIdRoute
   '/food/$id': typeof FoodIdRoute
 }
@@ -353,7 +360,9 @@ export interface FileRoutesByTo {
   '/chef-dashboard': typeof ChefDashboardRouteWithChildren
   '/chef-orders': typeof ChefOrdersRoute
   '/chefs': typeof ChefsRoute
-  '/delivery': typeof DeliveryRouteWithChildren
+  '/delivery': typeof DeliveryRoute
+  '/delivery-history': typeof DeliveryHistoryRoute
+  '/delivery-navigation': typeof DeliveryNavigationRoute
   '/favorites': typeof FavoritesRoute
   '/festival': typeof FestivalRoute
   '/login': typeof LoginRoute
@@ -379,7 +388,6 @@ export interface FileRoutesByTo {
   '/chef-dashboard/earnings': typeof ChefDashboardEarningsRoute
   '/chef-dashboard/reviews': typeof ChefDashboardReviewsRoute
   '/chef/$id': typeof ChefIdRoute
-  '/delivery/navigation': typeof DeliveryNavigationRoute
   '/edit-dish/$id': typeof EditDishIdRoute
   '/food/$id': typeof FoodIdRoute
 }
@@ -402,7 +410,9 @@ export interface FileRoutesById {
   '/chef-dashboard': typeof ChefDashboardRouteWithChildren
   '/chef-orders': typeof ChefOrdersRoute
   '/chefs': typeof ChefsRoute
-  '/delivery': typeof DeliveryRouteWithChildren
+  '/delivery': typeof DeliveryRoute
+  '/delivery-history': typeof DeliveryHistoryRoute
+  '/delivery-navigation': typeof DeliveryNavigationRoute
   '/favorites': typeof FavoritesRoute
   '/festival': typeof FestivalRoute
   '/login': typeof LoginRoute
@@ -428,7 +438,6 @@ export interface FileRoutesById {
   '/chef-dashboard/earnings': typeof ChefDashboardEarningsRoute
   '/chef-dashboard/reviews': typeof ChefDashboardReviewsRoute
   '/chef/$id': typeof ChefIdRoute
-  '/delivery/navigation': typeof DeliveryNavigationRoute
   '/edit-dish/$id': typeof EditDishIdRoute
   '/food/$id': typeof FoodIdRoute
 }
@@ -453,6 +462,8 @@ export interface FileRouteTypes {
     | '/chef-orders'
     | '/chefs'
     | '/delivery'
+    | '/delivery-history'
+    | '/delivery-navigation'
     | '/favorites'
     | '/festival'
     | '/login'
@@ -478,7 +489,6 @@ export interface FileRouteTypes {
     | '/chef-dashboard/earnings'
     | '/chef-dashboard/reviews'
     | '/chef/$id'
-    | '/delivery/navigation'
     | '/edit-dish/$id'
     | '/food/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -501,6 +511,8 @@ export interface FileRouteTypes {
     | '/chef-orders'
     | '/chefs'
     | '/delivery'
+    | '/delivery-history'
+    | '/delivery-navigation'
     | '/favorites'
     | '/festival'
     | '/login'
@@ -526,7 +538,6 @@ export interface FileRouteTypes {
     | '/chef-dashboard/earnings'
     | '/chef-dashboard/reviews'
     | '/chef/$id'
-    | '/delivery/navigation'
     | '/edit-dish/$id'
     | '/food/$id'
   id:
@@ -549,6 +560,8 @@ export interface FileRouteTypes {
     | '/chef-orders'
     | '/chefs'
     | '/delivery'
+    | '/delivery-history'
+    | '/delivery-navigation'
     | '/favorites'
     | '/festival'
     | '/login'
@@ -574,7 +587,6 @@ export interface FileRouteTypes {
     | '/chef-dashboard/earnings'
     | '/chef-dashboard/reviews'
     | '/chef/$id'
-    | '/delivery/navigation'
     | '/edit-dish/$id'
     | '/food/$id'
   fileRoutesById: FileRoutesById
@@ -597,7 +609,9 @@ export interface RootRouteChildren {
   ChefDashboardRoute: typeof ChefDashboardRouteWithChildren
   ChefOrdersRoute: typeof ChefOrdersRoute
   ChefsRoute: typeof ChefsRoute
-  DeliveryRoute: typeof DeliveryRouteWithChildren
+  DeliveryRoute: typeof DeliveryRoute
+  DeliveryHistoryRoute: typeof DeliveryHistoryRoute
+  DeliveryNavigationRoute: typeof DeliveryNavigationRoute
   FavoritesRoute: typeof FavoritesRoute
   FestivalRoute: typeof FestivalRoute
   LoginRoute: typeof LoginRoute
@@ -774,6 +788,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/delivery-navigation': {
+      id: '/delivery-navigation'
+      path: '/delivery-navigation'
+      fullPath: '/delivery-navigation'
+      preLoaderRoute: typeof DeliveryNavigationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delivery-history': {
+      id: '/delivery-history'
+      path: '/delivery-history'
+      fullPath: '/delivery-history'
+      preLoaderRoute: typeof DeliveryHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/delivery': {
       id: '/delivery'
       path: '/delivery'
@@ -914,13 +942,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditDishIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/delivery/navigation': {
-      id: '/delivery/navigation'
-      path: '/navigation'
-      fullPath: '/delivery/navigation'
-      preLoaderRoute: typeof DeliveryNavigationRouteImport
-      parentRoute: typeof DeliveryRoute
-    }
     '/chef/$id': {
       id: '/chef/$id'
       path: '/chef/$id'
@@ -966,18 +987,6 @@ const ChefDashboardRouteWithChildren = ChefDashboardRoute._addFileChildren(
   ChefDashboardRouteChildren,
 )
 
-interface DeliveryRouteChildren {
-  DeliveryNavigationRoute: typeof DeliveryNavigationRoute
-}
-
-const DeliveryRouteChildren: DeliveryRouteChildren = {
-  DeliveryNavigationRoute: DeliveryNavigationRoute,
-}
-
-const DeliveryRouteWithChildren = DeliveryRoute._addFileChildren(
-  DeliveryRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AddItemRoute: AddItemRoute,
@@ -996,7 +1005,9 @@ const rootRouteChildren: RootRouteChildren = {
   ChefDashboardRoute: ChefDashboardRouteWithChildren,
   ChefOrdersRoute: ChefOrdersRoute,
   ChefsRoute: ChefsRoute,
-  DeliveryRoute: DeliveryRouteWithChildren,
+  DeliveryRoute: DeliveryRoute,
+  DeliveryHistoryRoute: DeliveryHistoryRoute,
+  DeliveryNavigationRoute: DeliveryNavigationRoute,
   FavoritesRoute: FavoritesRoute,
   FestivalRoute: FestivalRoute,
   LoginRoute: LoginRoute,
